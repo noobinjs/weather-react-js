@@ -2,7 +2,7 @@ import React from "react";
 import ListItem from "./listitem";
 
 export default function List(props){
-     console.log(props)
+    //  console.log(props)
     return(
         <ul>
             {props.weather.map(

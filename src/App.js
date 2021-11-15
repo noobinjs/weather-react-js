@@ -1,17 +1,18 @@
 import Form from './Form';
 import Context from './context';
-import { useState, useEffect } from 'react/cjs/react.development';
+import { useState, useEffect } from 'react';
 import List from './list';
 
 function App() {
   const [weatherList, setWeatherList] = useState([]);
   const [already, setAlready] = useState(false);
+  const [find, setFind] = useState(false);
 
   useEffect(()=>{
     if(localStorage.getItem('weather')){
       const storage = JSON.parse(localStorage.getItem('weather'))
       setWeatherList(storage)
-    console.log('mount')
+    // console.log('mount')
     }
   }
     
@@ -51,7 +52,9 @@ function App() {
         // localStorage.setItem('weather', JSON.stringify(weatherList) )
       // console.log('weather1',weatherList)
     }else{
-      console.log('can`t find')
+      setFind(true)
+      // console.log('can`t find')
+      setTimeout(()=> setFind(false),2000)
     }
   }
   function removeCity(id){
@@ -63,6 +66,7 @@ function App() {
        {weatherList.length > 0 ? <span></span>: <h1>Weather list</h1>} 
         <Form />
        {already ? <span className="already">Already in list</span> : ''} 
+       {find ? <span className="already">Unknown city</span> : ''} 
         <List weather={weatherList} />
 
         {/* { weatherList.map((item, index) => <p>{item} key={index}</p>

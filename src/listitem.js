@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import Context from './context';
 
 export default function ListItem(props) {
-    console.log('props', props)
+    // console.log('props', props)
     const {removeCity} = useContext(Context)
   return (
     <li className="itemstyle">
